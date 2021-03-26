@@ -1,0 +1,20 @@
+name: pyrmd
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - babel=2.8.0
+  - matplotlib=3.2.2
+  - matplotlib-base=3.2.2
+  - numpy=1.18.5
+  - numpy-base=1.18.5
+  - openbabel=3.1.1
+  - pandas=1.0.5
+  - python=3.7.6
+  - rdkit=2020.09.1
+  - scikit-image=0.16.2
+  - scikit-learn=0.23.1
+  - scipy=1.5.0
+  - seaborn=0.10.1
+
+
