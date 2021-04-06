@@ -20,7 +20,7 @@
 # If you used PyRMD in your work, or you require information regarding the software, please email the authors at giorgio.amendola@unicampania.it --- sandro.cosconati@unicampania.it
 # 
 # Please check our GitHub page for more information 
-# <https://github.com/gioamendola/PyRMD>
+# <https://github.com/cosconatilab/PyRMD>
 # 
 
 # In[1]:
@@ -1418,30 +1418,30 @@ def list_2_string(prog_input):
 
 #Databases loading
 print('''
-*************************************************************************************
-PyRMD: AI-powered Virtual Screening                                                 *
-Copyright (C) 2021  Dr. Giorgio Amendola, Prof. Sandro Cosconati                    *
-                                                                                    *
-This program is free software: you can redistribute it and/or modify                *
-it under the terms of the GNU Affero General Public License as published            * 
-by the Free Software Foundation, either version 3 of the License, or                *
-(at your option) any later version.                                                 *
-                                                                                    *
-This program is distributed in the hope that it will be useful,                     *
-but WITHOUT ANY WARRANTY; without even the implied warranty of                      *
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                       * 
-GNU Affero General Public License for more details.                                 * 
-                                                                                    *
-You should have received a copy of the GNU Affero General Public License            *
-along with this program.  If not, see <https://www.gnu.org/licenses/>.              *
-                                                                                    * 
-If you used PyRMD in your work, or you require information regarding the software,  *
-please email the authors at                                                         *
-giorgio.amendola@unicampania.it --- sandro.cosconati@unicampania.it                 *
-                                                                                    *
-Please check our GitHub page for more information                                   *
-<https://github.com/gioamendola/PyRMD>                                              *
-*************************************************************************************
+**************************************************************************************
+* PyRMD: AI-powered Virtual Screening                                                *
+* Copyright (C) 2021  Dr. Giorgio Amendola, Prof. Sandro Cosconati                   *
+*                                                                                    *
+* This program is free software: you can redistribute it and/or modify               *
+* it under the terms of the GNU Affero General Public License as published           * 
+* by the Free Software Foundation, either version 3 of the License, or               *
+* (at your option) any later version.                                                *
+*                                                                                    *
+* This program is distributed in the hope that it will be useful,                    *
+* but WITHOUT ANY WARRANTY; without even the implied warranty of                     *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                      * 
+* GNU Affero General Public License for more details.                                * 
+*                                                                                    *
+* You should have received a copy of the GNU Affero General Public License           *
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.             *
+*                                                                                    * 
+* If you used PyRMD in your work, or you require information regarding the software, *
+* please email the authors at                                                        *
+* giorgio.amendola@unicampania.it --- sandro.cosconati@unicampania.it                *
+*                                                                                    *
+* Please check our GitHub page for more information                                  *
+* <https://github.com/cosconatilab/PyRMD>                                            *
+**************************************************************************************
 
 ''')
 print('''                                                                                
