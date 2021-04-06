@@ -1,11 +1,10 @@
 # ![PyRMD-logo](https://user-images.githubusercontent.com/81375211/112626913-2c238880-8e31-11eb-8726-bfefcb5ebfa0.png)
-PyRMD is a [Cosconati Lab](https://sites.google.com/site/thecosconatilab/home) project from [University of Campania Luigi Vanvitelli](https://international.unicampania.it/index.php/en/). Supported by an [AIRC](https://www.airc.it/) Fellowship for Italy.
+PyRMD is a Ligand-Based Virtual Screening tool written in Python. The project is being developed by the [Cosconati Lab](https://sites.google.com/site/thecosconatilab/home) from [University of Campania Luigi Vanvitelli](https://international.unicampania.it/index.php/en/). 
+Supported by an [AIRC](https://www.airc.it/) Fellowship for Italy.
 
 Manuscript in preparation.
 
-Authors: Dr. Giorgio Amendola and Prof. Sandro Cosconati
-
-Get in touch with them at giorgio.amendola@unicampania.it and sandro.cosconati@unicampania.it
+Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
 # Installation
 First, users should download and install [Anaconda](https://www.anaconda.com/products/individual).
@@ -27,3 +26,6 @@ python PyRMD_v_1.00.py configuration_file.ini
 
 # Quick Guide
 Coming soon
+
+# RMD Algorithm
+PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564), an earlier version of the RMD developed by Lee et al.
