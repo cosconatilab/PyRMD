@@ -28,7 +28,6 @@
 
 #Imports
 import os
-import random
 import re
 import time
 from pathlib import Path
