@@ -15,7 +15,7 @@ create -f pyrmd_environment.yml
 ```
 Follow the instructions appearing on the terminal until the environment installation is complete.
 
-Adjust the `configuration_file.ini` with a text editor according to your preferences.To use PyRMD, activate the `pyrmd` conda environment:
+Adjust the `configuration_file.ini` with a text editor according to your preferences. To use PyRMD, activate the `pyrmd` conda environment:
 ```bash
 conda activate pyrmd
 ```
