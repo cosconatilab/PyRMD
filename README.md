@@ -21,12 +21,12 @@ conda activate pyrmd
 ```
 Then, you are ready to run the software:
 ```bash
-python PyRMD_v_1.00.py configuration_file.ini
+python PyRMD_v1.00.py configuration_file.ini
 ```
 
 If you need a clean configuration file, running PyRMD without any argument, like this:
 ```bash
-python PyRMD_v_1.00.py 
+python PyRMD_v1.00.py 
 ```
 It will automatically generate a `default_config.ini` with default settings.
 
