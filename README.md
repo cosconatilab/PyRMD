@@ -2,11 +2,11 @@
 PyRMD is a Ligand-Based Virtual Screening tool written in Python powered by machine learning. The project is being developed by the [Cosconati Lab](https://sites.google.com/site/thecosconatilab/home) from [University of Campania Luigi Vanvitelli](https://international.unicampania.it/index.php/en/). 
 Supported by the [AIRC](https://www.airc.it/) Fellowship for Italy Clementina Colombatti.
 
-Manuscript in preparation.
+Manuscript under review.
 
 Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
-# Installation
+# Installation and Usage
 First, users should download and install [Anaconda](https://www.anaconda.com/products/individual).
 
 Once Anaconda has been installed, download the files from this repository and from the terminal (Linux, MacOs) or the Command Prompt (Windows) enter: 
@@ -21,17 +21,18 @@ conda activate pyrmd
 ```
 Then, you are ready to run the software:
 ```bash
-python PyRMD_v1.00.py configuration_file.ini
+python PyRMD_v1.01.py configuration_file.ini
 ```
 
 If you need a clean configuration file, running PyRMD without any argument, like this:
 ```bash
-python PyRMD_v1.00.py 
+python PyRMD_v1.01.py 
 ```
 It will automatically generate a `default_config.ini` with default settings.
 
-# Quick Guide
-Coming soon
+# Tutorials
+In the `tutorials` folder are present two test cases, one for the benchmark mode and another for the screening mode, with all the files and the configurations already set up. Users only need to run PyRMD in the respective folders. 
+
 
 # RMD Algorithm
 PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564).
