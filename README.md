@@ -32,6 +32,22 @@ It will automatically generate a `default_config.ini` with default settings.
 
 # Tutorials
 In the `tutorials` folder are present two test cases, one for the benchmark mode and another for the screening mode, with all the files and the configurations already set up. Users only need to run PyRMD in the respective folders. 
+## Benchmark
+The benchmark test case allows to benchmark PyRMD performance using the target bioactivity data downloaded from [ChEMBL](https://www.ebi.ac.uk/chembl/target_report_card/CHEMBL3717/) for the tyrosine-kinase MET. The benchmark employs a Repeats Stratified K-Fold approach with 5 folds and 3 repetions. MET decoy compounds downloaded from the [DUD-E](http://dude.docking.org/) are also included in the folder to be used as an additional test set. These settings are specified in the `configuration_benchmark.ini` file that can be easily modified.
+To activate the conda environment and run the benchmark, enter:
+```bash
+conda activate pyrmd
+python PyRMD_v1.01.py configuration_benchmark.ini
+```
+At the end of the calculations, the `benchmark_results.csv` file will include the averaged benchmark metrics (TPR, FPR, Precision, F-Score, ROC AUC, PRC AUC, and BEDROC) across all the folds and repetitions. Also, the plots `ROC_curve.png` and `PRC_curve.png` will also be generated.
+## Screening
+The screening test case trains PyRMD with the MET ChEMBL bioactivity data (the same used in the benchmark) and proceeds to screen a small sample of randomly extracted compounds from [MCULE](https://mcule.com/). These settings are specified in the `configuration_screening.ini` file that can be easily modified. 
+To activate the conda environment and run the screening, enter:
+```bash
+conda activate pyrmd
+python PyRMD_v1.01.py configuration_benchmark.ini
+```
+At the end of the calculations, the `database_predictions.csv` file will report a summary of the molecules predicted to be active against MET. For each compound, the file will include the molecule SMILES string, the RMD confidence score(the higher the better), the most similar training active compound and its relative similarity, and a flag indicating if it is a potential PAINS. Also, the `predicted_actives.smi` SMILES file will also be created to be readily used with other cheminformatics/molecular modeling software.
 
 
 # RMD Algorithm
