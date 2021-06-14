@@ -45,7 +45,7 @@ The screening test case trains PyRMD with the MET ChEMBL bioactivity data (the s
 To activate the conda environment and run the screening, enter:
 ```bash
 conda activate pyrmd
-python PyRMD_v1.01.py configuration_benchmark.ini
+python PyRMD_v1.01.py configuration_screening.ini
 ```
 At the end of the calculations, the `database_predictions.csv` file will report a summary of the molecules predicted to be active against MET. For each compound, the file will include the molecule SMILES string, the RMD confidence score(the higher the better), the most similar training active compound and its relative similarity, and a flag indicating if it is a potential PAINS. Also, the `predicted_actives.smi` SMILES file will be created to be readily used with other cheminformatics/molecular modeling software.
 
