@@ -2,7 +2,8 @@
 PyRMD is a Ligand-Based Virtual Screening tool written in Python powered by machine learning. The project is being developed by the [Cosconati Lab](https://sites.google.com/site/thecosconatilab/home) from [University of Campania Luigi Vanvitelli](https://international.unicampania.it/index.php/en/). 
 Supported by the [AIRC](https://www.airc.it/) Fellowship for Italy Clementina Colombatti.
 
-Manuscript under review.
+Please check our open-access manuscript published in the Journal of Chemical Information and Modeling for the full explanation of PyRMD functions
+https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653
 
 Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
