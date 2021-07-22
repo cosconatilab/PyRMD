@@ -10,7 +10,7 @@ Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Pro
 # Installation and Usage
 First, users should download and install [Anaconda](https://www.anaconda.com/products/individual).
 
-Once Anaconda has been installed, download the files from this repository and from the terminal (Linux, MacOs) or the Command Prompt (Windows) enter: 
+Once Anaconda has been installed, download the files from this repository and from the terminal (Linux, MacOs) or the Command Prompt (Windows) and to install the `pyrmd` conda environment enter: 
 ```bash
 create -f pyrmd_environment.yml
 ```
