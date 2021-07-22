@@ -52,7 +52,7 @@ python PyRMD_v1.02.py configuration_screening.ini
 At the end of the calculations, the `database_predictions.csv` file will report a summary of the molecules predicted to be active against MET. For each compound, the file will include the molecule SMILES string, the RMD confidence score(the higher the better), the most similar training active compound and its relative similarity, and a flag indicating if it is a potential PAINS. Also, the `predicted_actives.smi` SMILES file will be created to be readily used with other cheminformatics/molecular modeling software.
 
 # Training Data
-Please check the **"Benchmarking  Training  Data"** section in the [Supporting Information PDF of the JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) for a description of what kind of training data to use with PyRMD
+Please check the **"Training Dataset Preparation"** and **"Benchmarking  Training  Data"** sections in the [Supporting Information PDF of the JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) for a description of what kind of training data to use with PyRMD
 
 # Optimizing PyRMD Performance
 Poor performance may be the result of several factors, which include:
