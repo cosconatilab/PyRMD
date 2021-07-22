@@ -12,7 +12,7 @@ First, users should download and install [Anaconda](https://www.anaconda.com/pro
 
 Once Anaconda has been installed, download the files from this repository and from the terminal (Linux, MacOs) or the Command Prompt (Windows) enter: 
 ```bash
-create -f pyrmd_environment.yml
+conda env create -f pyrmd_environment.yml
 ```
 This will install to install the `pyrmd` conda environment. Follow the instructions appearing on the terminal until the environment installation is complete.
 
