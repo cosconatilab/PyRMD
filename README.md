@@ -31,6 +31,7 @@ python PyRMD_v1.02.py
 ```
 It will automatically generate a `default_config.ini` with default settings.
 
+If you are having troubles in correctly setting up PyRMD or optimizing its performance, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
 # Tutorials
 In the `tutorials` folder are present two test cases, one for the benchmark mode and another for the screening mode, with all the files and the configurations already set up. Users only need to run PyRMD in the respective folders. 
 ## Benchmark
@@ -59,7 +60,7 @@ Poor performance may be the result of several factors, which include:
 
 The above cases and others are discussed in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653). Importantly, adjusting the epsilon cutoff values may readily improve poor performance, especially with regards to TPR, FPR, Precision, and F-Score, as they impact the classification thresholds. The default cutoff values for both the active training set and the inactive training set is 0.95, so that 95% of the training set will be considered in the model building step. This allows to account for some tolerance to the presence/absence of chemical motifs. Higher values (e.g. closer to 1) for the active training cutoff generally result in more true positives and false positives alike. Instead, a higher cutoff for the inactive set fitting should mainly decrease the false positive rate with some effect on the TPR. 
 
-We suggest benchmarking using the possible combinations of the following epsilon cutoff values: 0.84–0.95–0.98 for epsilon_active and 0.7–0.84–0.95–0.98 for epsilon_cutoff_inactive and identify the combination with the best TPR/FPR tradeoff. Further information about the epsilon cutoff values are available in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) and in its [Supporting Information](https://pubs.acs.org/doi/suppl/10.1021/acs.jcim.1c00653/suppl_file/ci1c00653_si_001.pdf). If you are having troubles in correctly setting up PyRMD or optimizing its performance, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
+We suggest benchmarking using the possible combinations of the following epsilon cutoff values: 0.84–0.95–0.98 for epsilon_active and 0.7–0.84–0.95–0.98 for epsilon_cutoff_inactive and identify the combination with the best TPR/FPR tradeoff. Further information about the epsilon cutoff values are available in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) and in its [Supporting Information](https://pubs.acs.org/doi/suppl/10.1021/acs.jcim.1c00653/suppl_file/ci1c00653_si_001.pdf). 
 
 # RMD Algorithm
 PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564).
