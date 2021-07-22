@@ -10,11 +10,11 @@ Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Pro
 # Installation and Usage
 First, users should download and install [Anaconda](https://www.anaconda.com/products/individual).
 
-Once Anaconda has been installed, download the files from this repository and from the terminal (Linux, MacOs) or the Command Prompt (Windows) to install the `pyrmd` conda environment enter: 
+Once Anaconda has been installed, download the files from this repository and from the terminal (Linux, MacOs) or the Command Prompt (Windows) enter: 
 ```bash
 create -f pyrmd_environment.yml
 ```
-Follow the instructions appearing on the terminal until the environment installation is complete.
+This will install to install the `pyrmd` conda environment. Follow the instructions appearing on the terminal until the environment installation is complete.
 
 Adjust the `configuration_file.ini` with a text editor according to your preferences. To use PyRMD, activate the `pyrmd` conda environment:
 ```bash
