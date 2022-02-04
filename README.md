@@ -22,12 +22,12 @@ conda activate pyrmd
 ```
 Then, you are ready to run the software:
 ```bash
-python PyRMD_v1.02.py configuration_file.ini
+python PyRMD_v1.03.py configuration_file.ini
 ```
 
 If you need a clean configuration file, running PyRMD without any argument, like this:
 ```bash
-python PyRMD_v1.02.py 
+python PyRMD_v1.03.py 
 ```
 It will automatically generate a `default_config.ini` with default settings.
 
@@ -39,7 +39,7 @@ The benchmark test case allows to benchmark PyRMD performance using the target b
 To activate the conda environment and run the benchmark, enter:
 ```bash
 conda activate pyrmd
-python PyRMD_v1.02.py configuration_benchmark.ini
+python PyRMD_v1.03.py configuration_benchmark.ini
 ```
 At the end of the calculations, the `benchmark_results.csv` file will include the averaged benchmark metrics (TPR, FPR, Precision, F-Score, ROC AUC, PRC AUC, and BEDROC) across all the folds and repetitions. Also, the plots `ROC_curve.png` and `PRC_curve.png` will be generated.
 ## Screening
@@ -47,7 +47,7 @@ The screening test case trains PyRMD with the MET ChEMBL bioactivity data (the s
 To activate the conda environment and run the screening, enter:
 ```bash
 conda activate pyrmd
-python PyRMD_v1.02.py configuration_screening.ini
+python PyRMD_v1.03.py configuration_screening.ini
 ```
 At the end of the calculations, the `database_predictions.csv` file will report a summary of the molecules predicted to be active against MET. For each compound, the file will include the molecule SMILES string, the RMD confidence score(the higher the better), the most similar training active compound and its relative similarity, and a flag indicating if it is a potential PAINS. Also, the `predicted_actives.smi` SMILES file will be created to be readily used with other cheminformatics/molecular modeling software.
 
@@ -70,5 +70,5 @@ PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee 
 
 # Updates
 
-Version 1.03 fixes a rare error that led to crashes when processing more exotic compounds
+Version 1.03 fixes a rare bug that led to crashes when processing more exotic compounds in screening mode.
 
