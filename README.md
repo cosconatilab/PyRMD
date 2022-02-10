@@ -5,7 +5,7 @@ Supported by the [AIRC](https://www.airc.it/) Fellowship for Italy Clementina Co
 Please check our open-access manuscript published in the Journal of Chemical Information and Modeling for the full explanation of PyRMD functions
 https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653
 
-A new protocol, **PyRMD2DOCK**, has been devised as an approach to approximate molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD2DOCK** section at the bottom of this document.
+A new protocol, **PyRMD2DOCK**, has been devised as an approach to approximate the score of molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD2DOCK** section at the bottom of this document.
 
 Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
@@ -75,7 +75,7 @@ PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee 
 Version 1.03 fixes a rare bug that led to crashes when processing more exotic compounds in screening mode.
 
 # PyRMD2DOCK - A New Protocol
-Even though PyRMD was conceived to be used with experimentally validated data, very recent tests confirmed that it can also be used to approximate docking experiments. In our test, we used [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU) to dock on a protein target approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds in stock (~10 million compounds).
+Even though PyRMD was conceived to be used with experimentally validated data, very recent tests confirmed that it can also be used to approximate the score of docking experiments. In our test, we used [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU) to dock on a protein target approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds in stock (~10 million compounds).
 
 The docking energies (lowest energy clusters only) were extracted and plotted. We selected the compounds whose lowest energy docking score was =< -9.5 as active training set, for a total of ~8000 compounds. While the molecules with a lowest energy docking score >= -4.5 were chosen as inactive training set, for a total of ~3000 compounds. From our experience, having 2-3 times the number of actives compared to the inactives was favorable for PyRMD performance. Thus, benchmarking experiments to find the best performing epsilon cutoff values combinations were run, using ~25000 compounds with a docking score between -4.5 and -5.5 as decoys.
 The combination of epislon cutoff values which gave the best F-score (0.90) and high ROC AUC (0.99) was selected. 
