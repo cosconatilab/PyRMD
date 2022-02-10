@@ -86,3 +86,4 @@ Potentially, this approach can be used on any kind of target on which docking ca
 
 For more information on the PyRMD2DOCK protocol, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
 
+![pyrmd2dock](https://user-images.githubusercontent.com/81375211/153464709-09072f74-4654-408a-87bb-50552a57e5d4.png)
