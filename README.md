@@ -85,5 +85,3 @@ Using PyRMD, these settings were then used to screen the ZINC compounds not dock
 Potentially, this approach can be used on any kind of target on which docking can be performed, and with any kind of docking software, to **screen ultra-large commercial libraries** of even billions of compounds much faster than docking softwares. Compared to using PyRMD with experimentally validated data, **the PyRMD2DOCK approach** allows to identify even more diverse chemical scaffolds, **by combining the speed of 2D-based calculations with the ability of structure-based virtual screening to pick novel chemotypes**.
 
 For more information on the PyRMD2DOCK protocol, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
-
-![pyrmd2dock](https://user-images.githubusercontent.com/81375211/153464709-09072f74-4654-408a-87bb-50552a57e5d4.png)
