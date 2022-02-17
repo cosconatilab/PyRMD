@@ -53,10 +53,10 @@ python PyRMD_v1.03.py configuration_screening.ini
 ```
 At the end of the calculations, the `database_predictions.csv` file will report a summary of the molecules predicted to be active against MET. For each compound, the file will include the molecule SMILES string, the RMD confidence score(the higher the better), the most similar training active compound and its relative similarity, and a flag indicating if it is a potential PAINS. Also, the `predicted_actives.smi` SMILES file will be created to be readily used with other cheminformatics/molecular modeling software.
 
-# Training Data
+## Training Data
 Please check the **"Training Dataset Preparation"** and **"Benchmarking  Training  Data"** sections in the [Supporting Information PDF of the JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) for a description of what kind of training data to use with PyRMD
 
-# Optimizing PyRMD Performance
+## Optimizing PyRMD Performance
 Poor performance may be the result of several factors, which include:
  - Insufficient training data, either for the active set or the inactive one
  - Many more inactive compounds than actives in the training set
@@ -68,7 +68,7 @@ The above cases and others are discussed in the [JCIM article](https://pubs.acs.
 As a possible starting point, we suggest benchmarking using the possible combinations of **the following epsilon cutoff values: 0.84–0.95–0.98 for epsilon_active and 0.7–0.84–0.95–0.98 for epsilon_cutoff_inactive** and identify the combination with the best TPR/FPR tradeoff. If the suggested values combinations yield dissatisfactory results, a more thorough sampling of the epsilon cutoff values could be necessary by including greater ranges and more granular values. For instance, in the most challenging cases, we tested all the inactive cutoff values from 0.01 to 0.99 with a step of 0.03, and all the active cutoff values from 0.80 to 0.99 with a step of 0.03. Indeed, Bash scripting can be used to automate the sampling of the different cutoff combinations. 
 Further information about the epsilon cutoff values are available in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) and in its Supporting Information PDF. 
 
-# RMD Algorithm
+## RMD Algorithm
 PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564).
 
 # PyRMD-2-DOCK - A New Protocol
@@ -101,6 +101,6 @@ The following protocol assumes that the user is already familiar with the standa
 
 For more information on the PyRMD-2-DOCK protocol, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
 
-# Updates
+## Updates
 
 Version 1.03 fixes a rare bug that led to crashes when processing more exotic compounds in screening mode.
