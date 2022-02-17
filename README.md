@@ -5,7 +5,7 @@ Supported by the [AIRC](https://www.airc.it/) Fellowship for Italy Clementina Co
 Please check our open-access manuscript published in the Journal of Chemical Information and Modeling for the full explanation of PyRMD functions
 https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653
 
-A new protocol, **PyRMD2DOCK**, has been devised as an approach to approximate the score of molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD2DOCK** section at the bottom of this document.
+A new protocol, **PyRMD-2-DOCK**, has been devised as an approach to approximate the score of molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD-2-DOCK** section at the bottom of this document.
 
 Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
@@ -65,23 +65,42 @@ Poor performance may be the result of several factors, which include:
 
 The above cases and others are discussed in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653). Importantly, adjusting the epsilon cutoff values may readily improve poor performance, especially with regards to TPR, FPR, Precision, and F-Score, as they impact the classification thresholds. The default cutoff values for both the active training set and the inactive training set is 0.95, so that 95% of the training set will be considered in the model building step. This allows to account for some tolerance to the presence/absence of chemical motifs. Higher values (e.g. closer to 1) for the active training cutoff generally result in more true positives and false positives alike. Instead, a higher cutoff for the inactive set fitting should mainly decrease the false positive rate with some effect on the TPR. 
 
-As a possible starting point, we suggest benchmarking using the possible combinations of **the following epsilon cutoff values: 0.84–0.95–0.98 for epsilon_active and 0.7–0.84–0.95–0.98 for epsilon_cutoff_inactive** and identify the combination with the best TPR/FPR tradeoff. Further information about the epsilon cutoff values are available in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) and in its Supporting Information PDF. 
+As a possible starting point, we suggest benchmarking using the possible combinations of **the following epsilon cutoff values: 0.84–0.95–0.98 for epsilon_active and 0.7–0.84–0.95–0.98 for epsilon_cutoff_inactive** and identify the combination with the best TPR/FPR tradeoff. If the suggested values combinations yield dissatisfactory results, a more thorough sampling of the epsilon cutoff values could be necessary by including greater ranges and more granular values. For instance, in the most challenging cases, we tested all the inactive cutoff values from 0.01 to 0.99 with a step of 0.03, and all the active cutoff values from 0.80 to 0.99 with a step of 0.03. Indeed, Bash scripting can be used to automate the sampling of the different cutoff combinations. 
+Further information about the epsilon cutoff values are available in the [JCIM article](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) and in its Supporting Information PDF. 
 
 # RMD Algorithm
 PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564).
 
+# PyRMD-2-DOCK - A New Protocol
+Even though PyRMD was conceived to be used with experimentally validated data, very recent tests confirmed that it can also be used to **approximate the score of docking experiments**. 
+
+In our tests, we used [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU) to dock on a protein target approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds (~10 million compounds). The docking energies (lowest energy clusters only) were extracted and plotted. We selected the compounds whose lowest energy docking score was **=< -9.5 kcal/mol as active training set**, for a total of ~8000 compounds. While the molecules with a lowest energy docking score **>= -4.5 kcal/mol were chosen as inactive training set**, for a total of ~3000 compounds. In our experience, having a 2:1 or 3:1 ratio of actives/inactives in the training set is favorable for PyRMD performance. Thus, benchmarking experiments to find the best performing epsilon cutoff values combinations were run, using ~25000 compounds with a docking score between -4.5 and -5.5 as decoys.
+The combination of epislon cutoff values which gave the **best F-score (0.90) and high ROC AUC (0.99)** was selected. 
+
+Using PyRMD, these settings were then used to screen the ZINC compounds not docked initially (~9 million compounds). The best 10000 molecules according to the PyRMD RMD score were then docked using AutoDock-GPU on the protein target. Notably, the distribution of the docking scores showed a marked increase towards lower energy scores. The average docking score of the original docking experiment on one million compounds was of -7.5 kcal/mol. While the 10000 molecules selected using PyRMD averaged a docking score of -9.3 kcal/mol, demonstrating that **PyRMD is highly capable of identifying the compounds which score better according to the AutoDock scoring function in a short amount of time**. 
+
+Potentially, this approach can be used on any kind of target on which docking can be performed, and with any kind of docking software, to **screen ultra-large commercial libraries** of even billions of compounds much faster than docking softwares. Compared to using PyRMD with experimentally validated data, the PyRMD-2-DOCK approach allows to identify even more diverse chemical scaffolds, by combining **the speed of 2D-based calculations** with the ability of structure-based virtual screening to **pick novel chemotypes**.
+
+
+## PyRMD-2-DOCK Quick Start Guide
+The following protocol assumes that the user is already familiar with the standard PyRMD usage. Some of the steps can be automated and sped up through Bash scripting, such as the benchmarking of different epsilon cutoff values, but it is not strictly required.
+
+- With the docking software of preference, randomly select and dock a large set of compounds (~100.000-1.000.000) on a given target.
+
+- For the active training set, select the compounds whose predicted docking score is low enough (e.g. -9.0 kcal/mol). At least a few hundred compounds are required.
+
+- Conversely, select the compounds whose predicted docking score is high enough (e.g. -5.0 kcal/mol) to be used as part of the inactive set. Again, a few hundred compounds as a minimum are necessary. At the same time, the number of inactive training compounds should not be higher than the training actives. 
+
+- For a more accurate benchmark, select as decoys those compounds with a docking score close enough to the inactive training set. For instance, if all the compounds with a docking score ≥ -5.0 kcal/mol were chosen for the inactive training set, molecules with a docking energy between -5.0 kcal/mol and -6.0 kcal/mol could be used as decoys. Typically, at least 10.000 decoys should be picked.
+
+- Once all the above sets are selected and the relative SMILES files are created to be used as training and decoys(make sure to refer to [the SI of the PyRMD paper](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) for an in-depth explanation of what kind of files to use), benchmark calculations should be run to identify the best performing epsilon cutoff values combinations (see the Optimizing PyRMD Performance section of this README). Combinations with a high F-score and ROC AUC should be preferred.
+
+- The selected epsilon active/inactive cutoffs can then be used in screening mode to screen any kind of virtual library, even ultra-large ones of billions of compounds.  
+
+- Once the screening is complete, the top-ranking molecules according to RMD score (e.g. the top 10.000 or the top 100.000) should be docked using the preferred docking software for the final screening selection.
+
+For more information on the PyRMD-2-DOCK protocol, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
+
 # Updates
 
 Version 1.03 fixes a rare bug that led to crashes when processing more exotic compounds in screening mode.
-
-# PyRMD2DOCK - A New Protocol
-Even though PyRMD was conceived to be used with experimentally validated data, very recent tests confirmed that it can also be used to **approximate the score of docking experiments**. 
-
-In our tests, we used [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU) to dock on a protein target approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds (~10 million compounds). The docking energies (lowest energy clusters only) were extracted and plotted. We selected the compounds whose lowest energy docking score was **=< -9.5 as active training set**, for a total of ~8000 compounds. While the molecules with a lowest energy docking score **>= -4.5 were chosen as inactive training set**, for a total of ~3000 compounds. In our experience, having a 2:1 or 3:1 ratio of actives/inactives in the training set is favorable for PyRMD performance. Thus, benchmarking experiments to find the best performing epsilon cutoff values combinations were run, using ~25000 compounds with a docking score between -4.5 and -5.5 as decoys.
-The combination of epislon cutoff values which gave the **best F-score (0.90) and high ROC AUC (0.99)** was selected. 
-
-Using PyRMD, these settings were then used to screen the ZINC compounds not docked initially (~9 million compounds). The best 10000 molecules according to the PyRMD RMD score were then docked using AutoDock-GPU on the protein target. Notably, the distribution of the docking scores showed a marked increase towards lower energy scores. The average docking score of the original docking experiment on one million compounds was of -7.5. While the 10000 molecules selected using PyRMD averaged a docking score of -9.3, demonstrating that **PyRMD is highly capable of identifying the compounds which score better according to the AutoDock scoring function in a short amount of time**. 
-
-Potentially, this approach can be used on any kind of target on which docking can be performed, and with any kind of docking software, to **screen ultra-large commercial libraries** of even billions of compounds much faster than docking softwares. Compared to using PyRMD with experimentally validated data, **the PyRMD2DOCK approach** allows to identify even more diverse chemical scaffolds, **by combining the speed of 2D-based calculations with the ability of structure-based virtual screening to pick novel chemotypes**.
-
-For more information on the PyRMD2DOCK protocol, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
