@@ -93,7 +93,7 @@ Potentially, this approach can be used on any kind of target on which docking ca
 
 Compared to using PyRMD with experimentally validated data, the PyRMD-2-DOCK approach allows to identify even more diverse chemical scaffolds, by combining **the speed of 2D-based calculations** with the ability of structure-based virtual screening to **pick novel chemotypes**.
 
-![PyRMD-2-DOCK](https://user-images.githubusercontent.com/81375211/154726234-1c88f47c-c166-478e-a908-9ff746cd6065.png)
+![pyrmd-2-dock_resize](https://user-images.githubusercontent.com/81375211/154792447-bd8c7fce-f389-44f7-89da-7d98ce8669ac.png)
 
 
 ## PyRMD-2-DOCK Quick Start Guide
