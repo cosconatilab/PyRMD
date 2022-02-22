@@ -77,6 +77,8 @@ Further information about the epsilon cutoff values are available in the [JCIM a
 PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564).
 
 # PyRMD-2-DOCK - A New Protocol
+<img src="https://user-images.githubusercontent.com/81375211/154792826-75d79c64-53c2-4d7e-ba59-63d66cfdd05f.png" width="600">
+
 Even though PyRMD was conceived to be used with experimentally validated data, very recent tests confirmed that it can also be used to **approximate the score of docking experiments**. 
 
 In our tests, we used [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU) to dock on a protein target approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds (~10 million compounds). The docking energies (lowest energy clusters only) were extracted and plotted. 
@@ -93,7 +95,6 @@ Potentially, this approach can be used on any kind of target on which docking ca
 
 Compared to using PyRMD with experimentally validated data, the PyRMD-2-DOCK approach allows to identify even more diverse chemical scaffolds, by combining **the speed of 2D-based calculations** with the ability of structure-based virtual screening to **pick novel chemotypes**.
 
-<img src="https://user-images.githubusercontent.com/81375211/154792826-75d79c64-53c2-4d7e-ba59-63d66cfdd05f.png" width="600">
 
 ## PyRMD-2-DOCK Quick Start Guide
 The following protocol assumes that the user is already familiar with the standard PyRMD usage. Some of the steps can be automated and sped up through Bash scripting, such as the benchmarking of different epsilon cutoff values, but it is not strictly required.
