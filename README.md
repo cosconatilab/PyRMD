@@ -7,7 +7,7 @@ https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653
 
 A new protocol, **PyRMD-2-DOCK**, has been devised as an approach to approximate the score of molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD-2-DOCK** section at the bottom of this document.
 
-Authors: [Dr. Giorgio Amendola](mailto:giorgio.amendola@unicampania.it) and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
+Authors: Dr. Giorgio Amendola and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
 # Installation and Usage
 First, users should download and install either Anaconda or [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
@@ -113,7 +113,7 @@ The following protocol assumes that the user is already familiar with the standa
 
 - Once the screening is completed, the **top-ranking molecules** according to their **RMD score** (e.g. the top 10.000 or the top 100.000) should be docked using the preferred docking software for the final screening selection.
 
-For more information on the PyRMD-2-DOCK protocol, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
+For more information on the PyRMD-2-DOCK protocol, [get in touch with us](mailto:sandro.cosconati@unicampania.it).
 
 ## Updates
 
