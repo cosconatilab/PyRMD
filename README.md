@@ -33,7 +33,7 @@ python PyRMD_v1.03.py
 ```
 It will automatically generate a `default_config.ini` with default settings.
 
-If you are having troubles in correctly setting up PyRMD or optimizing its performance, [get in touch with us](mailto:giorgio.amendola@unicampania.it).
+If you are having troubles in correctly setting up PyRMD or optimizing its performance, [get in touch with us](mailto:sandro.cosconati@unicampania.it).
 # Tutorials
 In the `tutorials` folder are present two test cases, one for the benchmark mode and another for the screening mode, with all the files and the configurations already set up. Users only need to run PyRMD in the respective folders. 
 ## Benchmark
