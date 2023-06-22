@@ -76,42 +76,39 @@ Further information about the epsilon cutoff values are available in the [JCIM a
 ## RMD Algorithm
 PyRMD implements the Random Matrix Discriminant (RMD) algorithm devised by [Lee et al.](https://www.pnas.org/content/116/9/3373) to identify small molecules endowed with biological activity. Parts of the RMD algorithm code were adapted from the [MATLAB version of the RMD](https://github.com/alphaleegroup/RandomMatrixDiscriminant) and a [Python implementation proposed by Laksh Aithani](https://towardsdatascience.com/random-matrix-theory-the-best-classifier-for-prediction-of-drug-binding-f82613fb48ed) of the [Random Matrix Theory](https://www.pnas.org/content/113/48/13564).
 
-# PyRMD-2-DOCK - A New Protocol
-<img src="https://user-images.githubusercontent.com/81375211/154792826-75d79c64-53c2-4d7e-ba59-63d66cfdd05f.png" width="600">
+# PyRMD2Dock - A New Protocol
+New studies highlight the significance of employing exceptionally large molecular databases in Structure-Based Virtual Screening (SBVS) campaigns, as it significantly enhances the probability of uncovering promising and innovative drug candidates. To tackle this issue, we have introduced **PyRMD2Dock**, an innovative computational approach that combines the rapidity of our AI-driven Ligand-Based Virtual Screening (LBVS) tool, PyRMD, with the widely utilized docking software [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU). This approach involves docking a small subset of the target database, which serves as training data to construct a Machine Learning (ML) model capable of predicting the docking performance of an extensive collection of chemical compounds.
 
-Even though PyRMD was conceived to be used with experimentally validated data, very recent tests confirmed that it can also be used to **approximate the score of docking experiments**. 
+![image](https://github.com/cosconatilab/PyRMD/assets/131974589/6106b42b-4595-4fc9-9b7e-8623ea5d4510)
 
-In our tests, we used [AutoDock-GPU](https://github.com/ccsb-scripps/AutoDock-GPU) to dock on a protein target approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds (~10 million compounds). The docking energies (lowest energy clusters only) were extracted and plotted. 
+The PyRMD2Dock approach integrates the inherent benefits of Structure-Based Virtual Screening (SBVS) with the capabilities of AI-driven Ligand-Based Virtual Screening (LBVS), enabling the efficient screening of billions of ligands within a manageable timeframe and with limited computational resources.
 
-We selected the compounds whose lowest energy docking score was **=< -9.5 kcal/mol as active training set**, for a total of ~8000 compounds. While the molecules with a lowest energy docking score **>= -4.5 kcal/mol were chosen as inactive training set**, for a total of ~3000 compounds. In our experience, having a 2:1 or 3:1 ratio of actives/inactives in the training set is favorable for PyRMD performance. 
+In our tests, we used AutoDock-GPU to dock, on five protein targets, approximately one million compounds randomly extracted from the [ZINC](https://zinc20.docking.org/substances/home/) tranche of in stock drug-like compounds (~10 million compounds), to be used as training set.  
 
-Thus, benchmarking experiments to find the best performing epsilon cutoff values combinations were run, using ~25000 compounds with a docking score between -4.5 and -5.5 as decoys. The combination of epislon cutoff values which gave the **best F-score (0.90) and high ROC AUC (0.99)** was selected. 
+To validate the predictive capabilities of PyRMD2Dock, we conducted benchmarking experiments and performed post hoc docking of compounds selected by the protocol. The obtained results demonstrate that the models developed for five relevant pharmaceutical targets successfully identify compounds that exhibit favorable performance in subsequent docking calculations.
 
-Using PyRMD, these settings were then used to screen the ZINC compounds not docked initially (~9 million compounds). The best 10000 molecules according to the PyRMD RMD score were then docked using AutoDock-GPU on the protein target. 
+## PyRMD2Dock - Implementation
 
-Notably, the distribution of the docking scores showed a marked increase towards lower energy scores. The average docking score of the original docking experiment on one million compounds was of -7.5 kcal/mol. While the 10000 molecules selected using PyRMD averaged a docking score of -9.3 kcal/mol, demonstrating that **PyRMD is highly capable of identifying the compounds which score better according to the AutoDock scoring function in a short amount of time**. 
+The PyRMD2Dock approach provides a user-friendly experience through its simple workflow and automated process. However, certain aspects of the method require user involvement. To assist with these user-dependent tasks, we have developed a set of scripts that can be executed effortlessly with a single-line command in the terminal.
 
-Potentially, this approach can be used on any kind of target on which docking can be performed, and with any kind of docking software, to **screen ultra-large commercial libraries** of even billions of compounds much faster than docking softwares. 
+### Renaming Column Names
 
-Compared to using PyRMD with experimentally validated data, the PyRMD-2-DOCK approach allows to identify even more diverse chemical scaffolds, by combining **the speed of 2D-based calculations** with the ability of structure-based virtual screening to **pick novel chemotypes**.
+To successfully execute the entire PyRMD2Dock protocol, it is necessary to modify the column names associated with the ligand name and corresponding SMILES representation within the initial database used for the studies. We recommend renaming the column containing the ligand name as "Ligand" and the column containing the SMILES representation as "smiles". This adjustment ensures smooth data processing and adherence to the expected format throughout the protocol. Please note that this column renaming requirement applies specifically to the initial database used as input for the PyRMD2Dock protocol. Subsequent outputs and intermediate files generated during the protocol will automatically follow the standard naming conventions specified within the PyRMD2Dock implementation.
 
+### Ligand Preparation
 
-## PyRMD-2-DOCK Quick Start Guide
-The following protocol assumes that the user is already familiar with the standard PyRMD usage. Some of the steps can be automated and sped up through Bash scripting, such as the benchmarking of different epsilon cutoff values, but it is not strictly required.
+The initial training compounds need to be extracted from the database and converted into a suitable format for docking studies, such as a 3D file (.mol2 or .pdb) or any format required. It is crucial to prepare each ligand by enumerating the tautomers, protomers, and isomers, and starting with a low-energy ligand conformation. In our work, we employed "LigPrep" for ligand preparation. Refer to the docking methods section for more details on ligand preparation and docking calculations. After this step, the user must select the training set for docking calculations, resulting in the generation of a comma-separated .csv file containing docking results. To extract this information, we have implemented a python script named "prepare_docking_ranking.py".
 
-- With the docking software of preference, randomly select and **dock a large set of compounds** (~100.000-1.000.000) on a given target.
+### Benchmarking Calculations
 
-- For the **active training set**, select the compounds whose predicted docking score is low enough (e.g. **-9.0 kcal/mol**). At least a few hundred compounds are required.
+For benchmarking calculations, active and inactive databases are required, with user-defined thresholds for each set. To accomplish this, execute the "create_distribution_plot.py" script using the "prepare_docking_ranking.py" resulting file to generate a distribution plot of the calculated binding free energy (ΔGAD4) values. Based on this plot, users can set their own thresholds for activity and inactivity. These thresholds are essential for constructing the activity and inactivity databases needed for benchmarking calculations. To generate these databases, use the "get_actives_inactives.py" script. For easy creation of input files with various user-defined settings, a script named "prepare_benchmarking_dirs.py" is provided. Once these preparations are complete, benchmarking calculations can be initiated.
 
-- Conversely, select the compounds whose predicted docking score is high enough (e.g. **-5.0 kcal/mol**) to be used as part of the **inactive set**. Again, a few hundred compounds as a minimum are necessary. At the same time, **the number of inactive training compounds should not be higher than the training actives**. 
+### Model Selection and Screening
 
-- For a more accurate benchmark, select as **decoys** those compounds with a docking score close enough to the inactive training set. For instance, if all the compounds with a docking score ≥ -5.0 kcal/mol were chosen for the inactive training set, molecules with a docking energy **between -5.0 kcal/mol and -6.0 kcal/mol** could be used as decoys. Typically, at least 10.000 decoys should be picked.
+Following the benchmarking calculations, the user must select the best model based on the optimal tradeoff between true positive rate (TPR) and false positive rate (FPR). This selected model will be used for subsequent screening calculations.
 
-- Once all the above sets are selected and the relative SMILES files are created to be used as training and decoys(make sure to refer to [the SI of the PyRMD paper](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653) for an in-depth explanation of what kind of files to use), **benchmark calculations** should be run to identify the **best performing epsilon cutoff values** combinations (see the Optimizing PyRMD Performance section of this README). Combinations with a high F-score and ROC AUC should be preferred.
+To conduct screening in PyRMD2Dock, refer to the screening section of this page as reported above. After the screening calculations are completed, PyRMD generates a comma-separated .csv file containing various columns, including the confidence score (RMD_score). Using this score as a guide, the user needs to choose a subset of compounds for confirmative docking calculations. For ease of selection, we have developed a Python script named "select_best_RMD.py", which outputs two comma-separated .csv files: one containing the chosen subset along with all the information derived from PyRMD screening, and another containing a list of the selected compounds with their corresponding smiles strings. The latter file serves as a reference for subsequent docking calculations (ligand preparation and docking calculations).
 
-- The selected epsilon active/inactive cutoffs can then be used in **screening mode** to screen any kind of virtual library, even **ultra-large** ones of billions of compounds.  
-
-- Once the screening is completed, the **top-ranking molecules** according to their **RMD score** (e.g. the top 10.000 or the top 100.000) should be docked using the preferred docking software for the final screening selection.
 
 For more information on the PyRMD-2-DOCK protocol, [get in touch with us](mailto:sandro.cosconati@unicampania.it).
 
