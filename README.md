@@ -97,7 +97,7 @@ To successfully execute the entire PyRMD2Dock protocol, it is necessary to modif
 
 ### Ligand Preparation
 
-The initial training compounds need to be extracted from the database and converted into a suitable format for docking studies, such as a 3D file (.mol2 or .pdb) or any format required. It is crucial to prepare each ligand by enumerating the tautomers, protomers, and isomers, and starting with a low-energy ligand conformation. In our work, we employed "LigPrep" for ligand preparation. Refer to the docking methods section for more details on ligand preparation and docking calculations. After this step, the user must select the training set for docking calculations, resulting in the generation of a comma-separated .csv file containing docking results. To extract this information, we have implemented a python script named ["prepare_docking_ranking.py"](PyRMD2Dock_useful_scripts/).
+The initial training compounds need to be extracted from the database and converted into a suitable format for docking studies, such as a 3D file (.mol2 or .pdb) or any format required. It is crucial to prepare each ligand by enumerating the tautomers, protomers, and isomers, and starting with a low-energy ligand conformation. In our work, we employed "LigPrep" for ligand preparation. After this step, the user must select the training set for docking calculations, resulting in the generation of a comma-separated .csv file containing docking results. To extract this information, we have implemented a python script named ["prepare_docking_ranking.py"](PyRMD2Dock_useful_scripts/).
 
 ### Benchmarking Calculations
 
@@ -110,7 +110,7 @@ Following the benchmarking calculations, the user must select the best model bas
 To conduct screening in PyRMD2Dock, refer to the screening section of this page as reported above. After the screening calculations are completed, PyRMD generates a comma-separated .csv file containing various columns, including the confidence score (RMD_score). Using this score as a guide, the user needs to choose a subset of compounds for confirmative docking calculations. For ease of selection, we have developed a Python script named ["select_best_RMD.py"](PyRMD2Dock_useful_scripts/), which outputs two comma-separated .csv files: one containing the chosen subset along with all the information derived from PyRMD screening, and another containing a list of the selected compounds with their corresponding smiles strings. The latter file serves as a reference for subsequent docking calculations (ligand preparation and docking calculations).
 
 
-For more information on the PyRMD-2-DOCK protocol, [get in touch with us](mailto:sandro.cosconati@unicampania.it).
+For more information on the PyRMD2Dock protocol, [get in touch with us](mailto:sandro.cosconati@unicampania.it).
 
 ## Updates
 
