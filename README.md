@@ -5,7 +5,7 @@ Supported by the [AIRC](https://www.airc.it/) Fellowship for Italy Clementina Co
 Please check our open-access manuscript published in the Journal of Chemical Information and Modeling for the full explanation of PyRMD functions
 https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c00653
 
-A new protocol, **PyRMD-2-DOCK**, has been devised as an approach to approximate the score of molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD-2-DOCK** section at the bottom of this document.
+A new protocol, **PyRMD2Dock**, has been devised as an approach to approximate the score of molecular docking experiments using PyRMD. An outline of the protocol is described in the **PyRMD2Dock** section at the bottom of this document.
 
 Authors: Dr. Giorgio Amendola and [Prof. Sandro Cosconati](mailto:sandro.cosconati@unicampania.it)
 
