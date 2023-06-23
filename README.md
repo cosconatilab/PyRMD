@@ -97,7 +97,7 @@ To successfully execute the entire PyRMD2Dock protocol, it is necessary to modif
 
 ### Ligand Preparation
 
-The initial training compounds need to be extracted from the database and converted into a suitable format for docking studies, such as a 3D file (.mol2 or .pdb) or any format required. It is crucial to prepare each ligand by enumerating the tautomers, protomers, and isomers, and starting with a low-energy ligand conformation. In our work, we employed "LigPrep" for ligand preparation. Refer to the docking methods section for more details on ligand preparation and docking calculations. After this step, the user must select the training set for docking calculations, resulting in the generation of a comma-separated .csv file containing docking results. To extract this information, we have implemented a python script named ["prepare_docking_ranking.py"](PyRMD/PyRMD2Dock_useful_scripts/).
+The initial training compounds need to be extracted from the database and converted into a suitable format for docking studies, such as a 3D file (.mol2 or .pdb) or any format required. It is crucial to prepare each ligand by enumerating the tautomers, protomers, and isomers, and starting with a low-energy ligand conformation. In our work, we employed "LigPrep" for ligand preparation. Refer to the docking methods section for more details on ligand preparation and docking calculations. After this step, the user must select the training set for docking calculations, resulting in the generation of a comma-separated .csv file containing docking results. To extract this information, we have implemented a python script named ["prepare_docking_ranking.py"](PyRMD2Dock_useful_scripts/).
 
 ### Benchmarking Calculations
 
